@@ -3,240 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Acceso</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Gestión de Servicios | Acceso Seguro</title> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-    /* Colores extraídos de tu imagen de referencia */
-    --primary-blue: #0056b3;       /* Azul barra superior */
-    --dark-blue: #003d80;          /* Azul botón hover */
-    --accent-yellow: #ffcc00;      /* Línea amarilla decorativa */
-    --bg-gray: #f4f4f4;            /* Fondo general */
-    --sidebar-text: #666666;       /* Iconos grises */
-    --sidebar-hover: #e0e0e0;
-    --text-main: #333333;
-    --white: #ffffff;
-}
+            --primary-blue: #0056b3;
+            --dark-blue: #003d80;
+            --accent-yellow: #ffcc00;
+            --bg-gray: #f4f4f4;
+            --sidebar-text: #666666;
+            --sidebar-hover: #e0e0e0;
+            --text-main: #333333;
+            --white: #ffffff;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-body {
-    background-color: var(--bg-gray);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
+        body {
+            background-color: var(--bg-gray);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Cambiado a min-height para evitar cortes en el footer */
+        }
 
-/* --- HEADER --- */
-.main-header {
-    background-color: var(--primary-blue);
-    color: var(--white);
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 10;
-}
+        /* --- HEADER --- */
+        .main-header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
 
-.logo-container {
-    font-weight: bold;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .logo-container {
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.header-actions .user-action {
-    font-size: 0.9rem;
-    cursor: pointer;
-}
+        .header-actions .user-action {
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
 
-/* --- LAYOUT (Sidebar + Content) --- */
-.layout-container {
-    display: flex;
-    flex: 1;
-}
+        /* --- LAYOUT --- */
+        .layout-container {
+            display: flex;
+            flex: 1;
+        }
 
-/* --- SIDEBAR --- */
-.sidebar {
-    width: 250px;
-    background-color: var(--white);
-    border-right: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-}
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 250px;
+            background-color: var(--white);
+            border-right: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
 
-.sidebar ul {
-    list-style: none;
-}
+        .sidebar ul { list-style: none; }
 
-.sidebar li {
-    padding: 15px 20px;
-    color: var(--sidebar-text);
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
+        .sidebar li {
+            padding: 15px 20px;
+            color: var(--sidebar-text);
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
-.sidebar li:hover {
-    background-color: var(--sidebar-hover);
-    color: var(--primary-blue);
-    border-left: 4px solid var(--primary-blue);
-}
+        .sidebar li:hover, .sidebar li.active {
+            background-color: #f9f9f9;
+            color: var(--primary-blue);
+            border-left: 4px solid var(--primary-blue);
+        }
 
-.sidebar li.active {
-    background-color: #f9f9f9;
-    color: var(--primary-blue);
-    border-left: 4px solid var(--primary-blue);
-}
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+        }
 
-/* Al ocultar sidebar en móviles */
-@media (max-width: 768px) {
-    .sidebar {
-        display: none;
-    }
-}
+        /* --- CONTENT AREA --- */
+        .content-area {
+            flex: 1;
+            padding: 20px 40px;
+            background-color: var(--bg-gray);
+            display: flex;
+            flex-direction: column;
+        }
 
-/* --- CONTENT AREA --- */
-.content-area {
-    flex: 1;
-    padding: 20px 40px;
-    background-color: var(--bg-gray);
-    position: relative;
-}
+        .section-title {
+            border-bottom: 2px solid var(--accent-yellow);
+            margin-bottom: 30px;
+            background-color: var(--white);
+            padding: 15px 20px;
+        }
 
-/* La línea amarilla característica */
-.section-title {
-    border-bottom: 2px solid var(--accent-yellow);
-    margin-bottom: 30px;
-    background-color: var(--white);
-    padding: 15px 20px;
-    /* Truco para que la línea amarilla se vea como en la imagen (solo abajo) */
-}
+        .section-title h1 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-.section-title h1 {
-    font-size: 1.1rem;
-    color: var(--text-main);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        /* --- TARJETA CENTRAL --- */
+        .info-card {
+            background-color: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 40px;
+            text-align: center;
+        }
 
-/* --- TARJETA CENTRAL --- */
-.info-card {
-    background-color: var(--white);
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: 4px; /* Bordes sutiles */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    min-height: 400px; /* Para simular el espacio amplio de la imagen */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px;
-}
+        .card-content h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
 
-.card-content h2 {
-    color: var(--primary-blue);
-    margin-bottom: 20px;
-}
+        .intro-text {
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
 
-.intro-text {
-    color: var(--text-main);
-    line-height: 1.6;
-    margin-bottom: 30px;
-    font-size: 1rem;
-}
+        .info-box {
+            border: 1px solid #ddd;
+            background-color: #fcfcfc;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            width: 100%;
+            text-align: left; /* Mejor lectura para términos legales */
+            font-size: 0.9rem;
+        }
 
-.info-box {
-    border: 1px solid #ddd;
-    background-color: #fcfcfc;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 4px;
-    width: 100%;
-}
+        .info-box h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.info-box h3 {
-    font-size: 1rem;
-    margin-bottom: 10px;
-    color: var(--text-main);
-}
+        /* --- BOTONES --- */
+        .action-area {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
 
-/* --- BOTÓN Y CHECKBOX --- */
-.action-area {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+        }
 
-.checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    color: #555;
-}
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 3px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+            opacity: 0.6;
+            pointer-events: none;
+        }
 
-.btn-primary {
-    background-color: var(--primary-blue); /* Mismo azul que el botón "PAGAR" de la imagen */
-    color: var(--white);
-    border: none;
-    padding: 12px 40px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 3px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
-    opacity: 0.6; /* Deshabilitado visualmente al inicio */
-    pointer-events: none;
-}
+        .btn-primary.active {
+            opacity: 1;
+            pointer-events: all;
+        }
 
-.btn-primary.active {
-    opacity: 1;
-    pointer-events: all;
-}
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+        }
 
-.btn-primary:hover {
-    background-color: var(--dark-blue);
-}
+        /* --- FOOTER (CRUCIAL PARA GOOGLE ADS) --- */
+        .main-footer {
+            margin-top: auto;
+            padding-top: 40px;
+            padding-bottom: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.85rem;
+            text-align: center;
+        }
 
-/* --- FOOTER --- */
-.simple-footer {
-    position: absolute;
-    bottom: 10px;
-    left: 40px;
-    font-size: 0.8rem;
-    color: #999;
-}
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover { text-decoration: underline; }
+
+        .disclaimer {
+            font-size: 0.75rem;
+            color: #888;
+            max-width: 800px;
+            margin: 10px auto;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
 
     <header class="main-header">
         <div class="logo-container">
-            <span class="logo-icon"><i class="fas fa-bolt"></i></span>
-            <span class="logo-text">PORTAL DE SERVICIOS</span>
+            <span class="logo-icon"><i class="fas fa-check-shield"></i></span>
+            <span class="logo-text">PORTAL DE GESTIÓN</span>
         </div>
         <div class="header-actions">
-            <div class="user-action"><i class="fas fa-user-circle"></i> Iniciar Sesión</div>
+            <div class="user-action"><i class="fas fa-user-circle"></i> Zona Segura</div>
         </div>
     </header>
 
@@ -245,9 +253,9 @@ body {
             <nav>
                 <ul>
                     <li class="active"><i class="fas fa-home"></i> <span>Inicio</span></li>
-                    <li><i class="fas fa-file-invoice"></i> <span>Servicios</span></li>
-                    <li><i class="fas fa-shield-alt"></i> <span>Seguridad</span></li>
-                    <li><i class="fas fa-question-circle"></i> <span>Ayuda</span></li>
+                    <li><i class="fas fa-file-contract"></i> <span>Términos</span></li>
+                    <li><i class="fas fa-shield-alt"></i> <span>Privacidad</span></li>
+                    <li><i class="fas fa-headset"></i> <span>Soporte</span></li>
                 </ul>
             </nav>
         </aside>
@@ -255,46 +263,55 @@ body {
         <main class="content-area">
             
             <div class="section-title">
-                <h1>VERIFICACIÓN DE USUARIO</h1>
+                <h1>VALIDACIÓN DE ACCESO</h1>
             </div>
 
             <div class="info-card">
                 <div class="card-content">
-                    <h2>Términos y Condiciones del Servicio</h2>
+                    <h2>Consentimiento de Usuario</h2>
                     <p class="intro-text">
-                        Para garantizar una experiencia segura y eficiente en nuestra plataforma, es necesario que lea y acepte las políticas de uso antes de continuar.
+                        Para continuar hacia la plataforma de pagos y gestión, requerimos su consentimiento explícito respecto a nuestras políticas de tratamiento de datos y uso de cookies.
                     </p>
                     
                     <div class="info-box">
-                        <h3><i class="fas fa-info-circle"></i> Importante</h3>
-                        <p>Al hacer clic en el botón de aceptar, usted confirma que ha revisado la documentación pertinente y está de acuerdo con el procesamiento de sus datos para la gestión del servicio.</p>
+                        <h3><i class="fas fa-info-circle"></i> Aviso Importante</h3>
+                        <p>Este portal es un servicio independiente de gestión. Al hacer clic en "Aceptar", usted reconoce que ha leído nuestra <a href="#" style="color:#0056b3;">Política de Privacidad</a> y acepta el procesamiento de su información para fines de facturación y servicio al cliente.</p>
                     </div>
 
                     <div class="action-area">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" id="terms" onclick="toggleButton()">
-                            <label for="terms">He leído y acepto los términos establecidos.</label>
+                            <label for="terms">Acepto los Términos y Condiciones y la Política de Privacidad.</label>
                         </div>
 
-                        <button id="btn-continue" class="btn-primary" onclick="window.location.href='index.html'">
-                            ACEPTAR Y CONTINUAR
+                        <button id="btn-continue" class="btn-primary" onclick="window.location.href='destino.html'">
+                            CONFIRMAR Y ACCEDER
                         </button>
                     </div>
                 </div>
             </div>
 
-            <footer class="simple-footer">
-              
+            <footer class="main-footer">
+                <div class="footer-links">
+                    <a href="#">Política de Privacidad</a> |
+                    <a href="#">Términos de Uso</a> |
+                    <a href="#">Contacto</a> |
+                    <a href="#">Quiénes Somos</a>
+                </div>
+                <div class="disclaimer">
+                    <p><strong>Descargo de responsabilidad:</strong> Este sitio web es operado por [NOMBRE DE TU EMPRESA/RAZÓN SOCIAL]. No estamos afiliados directamente con entidades gubernamentales a menos que se indique explícitamente.</p>
+                    <p>Dirección: Calle Falsa 123, Ciudad, País | Email: contacto@tudominio.com</p>
+                    <p>&copy; 2025 Todos los derechos reservados.</p>
+                </div>
             </footer>
+
         </main>
     </div>
 
     <script>
-        // Pequeño script para activar el botón solo si aceptan el check
         function toggleButton() {
             const checkbox = document.getElementById('terms');
             const button = document.getElementById('btn-continue');
-            // Si quieres que funcione directo sin check, borra este script y quita el 'disabled' del botón en HTML
             if(checkbox.checked) {
                 button.classList.add('active');
             } else {
