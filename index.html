@@ -6,6 +6,227 @@
     <title>Portal de Acceso</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+    /* Colores extraídos de tu imagen de referencia */
+    --primary-blue: #0056b3;       /* Azul barra superior */
+    --dark-blue: #003d80;          /* Azul botón hover */
+    --accent-yellow: #ffcc00;      /* Línea amarilla decorativa */
+    --bg-gray: #f4f4f4;            /* Fondo general */
+    --sidebar-text: #666666;       /* Iconos grises */
+    --sidebar-hover: #e0e0e0;
+    --text-main: #333333;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-gray);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* --- HEADER --- */
+.main-header {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.logo-container {
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-actions .user-action {
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* --- LAYOUT (Sidebar + Content) --- */
+.layout-container {
+    display: flex;
+    flex: 1;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 250px;
+    background-color: var(--white);
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 15px 20px;
+    color: var(--sidebar-text);
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.sidebar li:hover {
+    background-color: var(--sidebar-hover);
+    color: var(--primary-blue);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.sidebar li.active {
+    background-color: #f9f9f9;
+    color: var(--primary-blue);
+    border-left: 4px solid var(--primary-blue);
+}
+
+/* Al ocultar sidebar en móviles */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+/* --- CONTENT AREA --- */
+.content-area {
+    flex: 1;
+    padding: 20px 40px;
+    background-color: var(--bg-gray);
+    position: relative;
+}
+
+/* La línea amarilla característica */
+.section-title {
+    border-bottom: 2px solid var(--accent-yellow);
+    margin-bottom: 30px;
+    background-color: var(--white);
+    padding: 15px 20px;
+    /* Truco para que la línea amarilla se vea como en la imagen (solo abajo) */
+}
+
+.section-title h1 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- TARJETA CENTRAL --- */
+.info-card {
+    background-color: var(--white);
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 4px; /* Bordes sutiles */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    min-height: 400px; /* Para simular el espacio amplio de la imagen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.card-content h2 {
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+.info-box {
+    border: 1px solid #ddd;
+    background-color: #fcfcfc;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.info-box h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+/* --- BOTÓN Y CHECKBOX --- */
+.action-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue); /* Mismo azul que el botón "PAGAR" de la imagen */
+    color: var(--white);
+    border: none;
+    padding: 12px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    opacity: 0.6; /* Deshabilitado visualmente al inicio */
+    pointer-events: none;
+}
+
+.btn-primary.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-blue);
+}
+
+/* --- FOOTER --- */
+.simple-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 40px;
+    font-size: 0.8rem;
+    color: #999;
+}
+    </style>
 </head>
 <body>
 
