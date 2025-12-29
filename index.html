@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Acceso</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+            <span class="logo-text">PORTAL DE SERVICIOS</span>
+        </div>
+        <div class="header-actions">
+            <div class="user-action"><i class="fas fa-user-circle"></i> Iniciar Sesión</div>
+        </div>
+    </header>
+
+    <div class="layout-container">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li class="active"><i class="fas fa-home"></i> <span>Inicio</span></li>
+                    <li><i class="fas fa-file-invoice"></i> <span>Servicios</span></li>
+                    <li><i class="fas fa-shield-alt"></i> <span>Seguridad</span></li>
+                    <li><i class="fas fa-question-circle"></i> <span>Ayuda</span></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content-area">
+            
+            <div class="section-title">
+                <h1>VERIFICACIÓN DE USUARIO</h1>
+            </div>
+
+            <div class="info-card">
+                <div class="card-content">
+                    <h2>Términos y Condiciones del Servicio</h2>
+                    <p class="intro-text">
+                        Para garantizar una experiencia segura y eficiente en nuestra plataforma, es necesario que lea y acepte las políticas de uso antes de continuar.
+                    </p>
+                    
+                    <div class="info-box">
+                        <h3><i class="fas fa-info-circle"></i> Importante</h3>
+                        <p>Al hacer clic en el botón de aceptar, usted confirma que ha revisado la documentación pertinente y está de acuerdo con el procesamiento de sus datos para la gestión del servicio.</p>
+                    </div>
+
+                    <div class="action-area">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="terms" onclick="toggleButton()">
+                            <label for="terms">He leído y acepto los términos establecidos.</label>
+                        </div>
+
+                        <button id="btn-continue" class="btn-primary" onclick="window.location.href='index.html'">
+                            ACEPTAR Y CONTINUAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="simple-footer">
+                &copy; 2025 SISTEMA DE GESTIÓN INTEGRAL S.A.S.
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Pequeño script para activar el botón solo si aceptan el check
+        function toggleButton() {
+            const checkbox = document.getElementById('terms');
+            const button = document.getElementById('btn-continue');
+            // Si quieres que funcione directo sin check, borra este script y quita el 'disabled' del botón en HTML
+            if(checkbox.checked) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
